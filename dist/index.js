@@ -3530,7 +3530,7 @@ function run() {
             const context = github.context;
             const repoName = (_a = context.payload.repository) === null || _a === void 0 ? void 0 : _a.name;
             const repoOwner = (_b = context.payload.repository) === null || _b === void 0 ? void 0 : _b.owner.login;
-            const headRefName = context.payload.event.ref.split('refs/heads/');
+            const headRefName = context.ref.split('refs/heads/');
             const opened_prs = yield octokit.graphql(getAllOpenedPrIds, {
                 owner: repoOwner,
                 repo: repoName,

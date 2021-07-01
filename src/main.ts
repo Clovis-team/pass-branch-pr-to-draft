@@ -29,7 +29,7 @@ async function run(): Promise<void> {
 
     const repoName = context.payload.repository?.name
     const repoOwner = context.payload.repository?.owner.login
-    const headRefName = context.payload.event.ref.split('refs/heads/')
+    const headRefName = context.ref.split('refs/heads/')
 
     const opened_prs: any = await octokit.graphql(getAllOpenedPrIds, {
       owner: repoOwner,
