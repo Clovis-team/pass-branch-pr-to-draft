@@ -29,7 +29,8 @@ async function run(): Promise<void> {
 
     const repoName = context.payload.repository?.name
     const repoOwner = context.payload.repository?.owner.login
-    const headRefName = context.ref.split('refs/heads/')
+    // Remove refs/heads/ from the ref to retrieve only the name
+    const headRefName = context.ref.slice(11)
 
     const opened_prs: any = await octokit.graphql(getAllOpenedPrIds, {
       owner: repoOwner,
