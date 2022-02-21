@@ -5,6 +5,9 @@ branding:
   icon: 'package'
   color: 'blue'
 inputs:
+  branch_name:
+    description: 'The current branch name'
+    required: true
   github_token:
     description: 'The GitHub token (if not provided the environment variable GITHUB_TOKEN will be used instead)'
     required: false

@@ -21,16 +21,15 @@ const convertPrToDraft = `mutation ConvertToDraft($pullRequestId: String!) {
 
 async function run(): Promise<void> {
   try {
-    const token = (core.getInput('github_token') ||
-      process.env.GITHUB_TOKEN) as string
+    const token = (core.getInput('github_token') || process.env.GITHUB_TOKEN) as string
 
-    const octokit = new github.GitHub(token)
+    const octokit = github.getOctokit(token)
     const context = github.context
 
     const repoName = context.payload.repository?.name
     const repoOwner = context.payload.repository?.owner.login
-    // Remove refs/heads/ from the ref to retrieve only the name
-    const headRefName = context.ref.slice(11)
+
+    const headRefName = core.getInput('branch_name')
 
     const opened_prs: any = await octokit.graphql(getAllOpenedPrIds, {
       owner: repoOwner,
@@ -48,7 +47,7 @@ async function run(): Promise<void> {
       })
     }
   } catch (error) {
-    core.setFailed(error.message)
+    core.setFailed((error as Error).message)
   }
 }
 
