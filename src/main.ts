@@ -21,7 +21,8 @@ const convertPrToDraft = `mutation ConvertToDraft($pullRequestId: String!) {
 
 async function run(): Promise<void> {
   try {
-    const token = (core.getInput('github_token') || process.env.GITHUB_TOKEN) as string
+    const token = (core.getInput('github_token') ||
+      process.env.GITHUB_TOKEN) as string
 
     const octokit = github.getOctokit(token)
     const context = github.context
