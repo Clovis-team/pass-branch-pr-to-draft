@@ -883,12 +883,13 @@ function run() {
     var _a, _b;
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const token = (core.getInput('github_token') || process.env.GITHUB_TOKEN);
+            const token = (core.getInput('github_token') ||
+                process.env.GITHUB_TOKEN);
             const octokit = github.getOctokit(token);
             const context = github.context;
             const repoName = (_a = context.payload.repository) === null || _a === void 0 ? void 0 : _a.name;
             const repoOwner = (_b = context.payload.repository) === null || _b === void 0 ? void 0 : _b.owner.login;
-            const headRefName = core.getInput('branch_name');
+            const headRefName = process.env.BRANCH_NAME;
             const opened_prs = yield octokit.graphql(getAllOpenedPrIds, {
                 owner: repoOwner,
                 repo: repoName,

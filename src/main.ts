@@ -30,7 +30,7 @@ async function run(): Promise<void> {
     const repoName = context.payload.repository?.name
     const repoOwner = context.payload.repository?.owner.login
 
-    const headRefName = core.getInput('branch_name')
+    const headRefName = process.env.BRANCH_NAME as string
 
     const opened_prs: any = await octokit.graphql(getAllOpenedPrIds, {
       owner: repoOwner,
