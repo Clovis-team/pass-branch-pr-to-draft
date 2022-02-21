@@ -1,6 +1,6 @@
 {
   "name": "pass-branch-pr-to-draft",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Pass all the associated open PR's to draft",
   "main": "lib/main.js",
   "scripts": {
