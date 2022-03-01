@@ -11,7 +11,7 @@ const getAllOpenedPrIds = `query($repo: String!, $owner: String!, $headRef: Stri
   }
 }`
 
-const convertPrToDraft = `mutation ConvertToDraft($pullRequestId: String!) {
+const convertPrToDraft = `mutation convertPullRequestToDraft($pullRequestId: ID!) {
   convertPullRequestToDraft(input: {clientMutationId: "pass-branch-pr-to-draft-action", pullRequestId: $pullRequestId}) {
     pullRequest {
       isDraft
